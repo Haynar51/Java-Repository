@@ -1,0 +1,26 @@
+1.自定义一个注解，只有方法能够使用，且在运行时可以通过反射获取到
+@Documented
+@Retention(RetentionPolicy.RUNTIME)//选项：1.SOUR在源码中可以看到，class 字节码中不包含 2.CLASS 默认保留策略，注解会在class字节码中 3.class字节码中存在，且可以通过反射获取到
+@Target(ElementType.METHOD) // 1.TYPE 类 接口，枚举 注解 ，2.METHOD，3.FILED，4.PARAMETER 5.CONSTRUCTOR 5.LOCAL_VARIABLE 6.PACKAGE 
+public @interface test{
+public enum Gender {'BOY','GIRL}
+public String name default "";
+}
+
+2.Session 与Cookie 的区别
+cookie 把用户数据写给用户的浏览器中
+session技术把用户的数据写到用户独占的内存session中；
+原理：服务器创建好session之后，把sessionid 以cookie 信息返回给客户机，客户机浏览器再次访问服务器的时候把这个session id 带上，服务器根据这个id 从内存中获取用户独占的session对象数据，服务用户。
+
+
+3.堆、栈、方法区、直接内存、堆和栈区别
+堆：提供所有类实例和数组对象存储区域；jvm 只有一个堆（heap）被所有线程共享，堆中不存放基本类型和对象引用，只存放对象本身。
+栈：每个线程包含一个栈区，栈中只存放基础数据类型的对象和自定义对象的的引用（不是对象），对象都存放在堆区中
+方法区：又叫静态区，跟堆一样，被所有的线程共享，存放所有的class 和static 变量；方法区包含的都是整个程序中永远唯一的元素如，class ,static 变量；
+运行时常量池都分配在jvm 方法区中。
+直接内存：它并不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域。在jdk1.4中加入的NIO类，引入了一种基于通道（channel）与缓冲区（buffer）的IO方式
+它可以使用native函数直接分配堆外内存，然后通过一个存储在Java堆中的DirectByteBuffer 对象作为这块内存的引用进行操作。这样能在一些场景中显著的提高性能，因为避免了在Java堆和Native
+堆之间的来回复制。
+堆与栈的区别：
+
+4.
