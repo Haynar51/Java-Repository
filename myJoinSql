@@ -1,0 +1,19 @@
+SELECT 
+cs.customer_id,
+cs.customer_head,
+cs.customer_name ,
+cs.customer_remark
+FROM
+(
+SELECT 
+f.follow_to_id customer_id
+,COUNT(f.follow_to_id) f_num
+FROM 
+ym_cu_follow f
+WHERE  f.follow_from_id <>36
+AND f.follow_type=1
+GROUP BY f.follow_to_id
+ORDER BY COUNT(f.follow_to_id)  DESC
+) sb 
+LEFT JOIN ym_cu_customer cs
+ ON cs.customer_id=sb.customer_id
