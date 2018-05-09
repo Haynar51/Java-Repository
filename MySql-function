@@ -1,0 +1,14 @@
+DELIMITER //
+CREATE FUNCTION incrementViewNum
+  ( videoId DECIMAL(17))
+RETURNS DECIMAL(17)
+BEGIN
+   UPDATE ym_cu_video 
+	SET view_num=view_num+1
+	WHERE video_id= videoId;
+  RETURN (SELECT view_num FROM ym_cu_video WHERE video_id = videoId);
+END//
+
+-- DROP   FUNCTION incrementViewNum
+
+SELECT  incrementViewNum(97);
